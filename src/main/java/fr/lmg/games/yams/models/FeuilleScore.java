@@ -53,7 +53,6 @@ public class FeuilleScore {
             case GRANDE_SUITE -> contientSuite(valeurs, 5) ? 40 : 0;
             case YAMS -> isYams(des) ? 50 : 0;
             case CHANCE -> sommeDes(des);
-            default -> 0;
         };
     }
 

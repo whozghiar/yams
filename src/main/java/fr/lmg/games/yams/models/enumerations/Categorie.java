@@ -1,5 +1,8 @@
 package fr.lmg.games.yams.models.enumerations;
 
+import lombok.Getter;
+
+@Getter
 public enum Categorie {
     AS(1),
     DEUX(2),
@@ -21,7 +24,4 @@ public enum Categorie {
         this.valeur = valeur;
     }
 
-    public int getValeur() {
-        return valeur;
-    }
 }
