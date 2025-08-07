@@ -59,14 +59,23 @@ public class ConsoleView {
         }
     }
 
-    public Categorie demanderCategorie() {
-        System.out.println("Choisissez une catégorie : ");
+    public Categorie demanderCategorie(Joueur joueur) {
+        System.out.println("Catégories disponibles : ");
+        joueur.getFeuilleScore().getScores().keySet().forEach(used -> System.out.print(""));
         for (Categorie c : Categorie.values()) {
-            System.out.println("- " + c);
+            if (joueur.getFeuilleScore().estCategorieDisponible(c)) {
+                System.out.println("- " + c);
+            }
         }
         while (true) {
             try {
-                return Categorie.valueOf(scanner.nextLine().toUpperCase());
+                String saisie = scanner.nextLine().toUpperCase();
+                Categorie choisie = Categorie.valueOf(saisie);
+                if (!joueur.getFeuilleScore().estCategorieDisponible(choisie)) {
+                    System.out.println("Catégorie déjà utilisée. Veuillez en choisir une autre.");
+                } else {
+                    return choisie;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println("Catégorie invalide. Réessayez : ");
             }
@@ -88,6 +97,11 @@ public class ConsoleView {
             System.out.printf("%s : %d\n", categorie, score);
         });
         System.out.println("Total : " + joueur.getFeuilleScore().calculerTotal());
+    }
+
+    public void afficherMessage(Joueur joueur) {
+        System.out.println("Message pour " + joueur.getNom() + ":" + "\n");
+        System.out.println("Veuillez choisir une catégorie qui n'est pas déjà utilisée.");
     }
 
 }

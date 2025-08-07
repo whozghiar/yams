@@ -51,8 +51,9 @@ public class GameController {
                 }
             }
 
-            // Demander au joueur de choisir une catégorie
-            Categorie categorie = vue.demanderCategorie();
+            // Demander au joueur de choisir une catégorie pour enregistrer son score
+            Categorie categorie = vue.demanderCategorie(joueurActuel);
+
             // Enregistrer le score du joueur dans la catégorie choisie
             joueurActuel.getFeuilleScore().enregistrerScore(categorie, lancer.getDes());
 
